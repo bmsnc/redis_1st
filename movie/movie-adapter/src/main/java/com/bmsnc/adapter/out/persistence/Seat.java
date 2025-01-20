@@ -12,13 +12,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class SeatInfo extends BaseEntity {
+public class Seat extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seatInfoId;
+
     @ManyToOne
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
+
     private String seatPosition;
 
 }

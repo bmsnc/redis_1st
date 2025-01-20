@@ -26,9 +26,7 @@ public class RunningMoviesAdapter implements RunningMoviesPort {
 
         return scheduleRepository.getRunningMovies(command.getTheaterId(), LocalDate.now())
                 .stream()
-                .map(Schedule::getMovieTheaterInfo)
-                .filter(Objects::nonNull)
-                .map(MovieTheaterInfo::getMovie)
+                .map(Schedule::getMovie)
                 .filter(Objects::nonNull)
                 .map(Movie::toModel)
                 .collect(Collectors.toList());

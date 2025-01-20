@@ -16,7 +16,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static com.bmsnc.adapter.out.persistence.QMovie.*;
-import static com.bmsnc.adapter.out.persistence.QMovieTheaterInfo.*;
 import static com.bmsnc.adapter.out.persistence.QSchedule.*;
 import static com.bmsnc.adapter.out.persistence.QTheater.theater;
 
@@ -40,13 +39,11 @@ public class ScheduleQueryRepository{
                         theater.theaterName,
                         schedule.movieStartAt
                 ))
-                .from(movieTheaterInfo)
+                .from(schedule)
                 .leftJoin(movie)
-                    .on(movieTheaterInfo.movie.movieId.eq(movie.movieId))
+                    .on(schedule.movie.movieId.eq(movie.movieId))
                 .leftJoin(theater)
-                    .on(movieTheaterInfo.theater.theaterId.eq(theater.theaterId))
-                .innerJoin(schedule)
-                    .on(movieTheaterInfo.movieTheaterInfoId.eq(schedule.movieTheaterInfo.movieTheaterInfoId))
+                    .on(schedule.theater.theaterId.eq(theater.theaterId))
                 .where(
                         theater.theaterId.eq(command.getTheaterId()),
                         isScreening(),

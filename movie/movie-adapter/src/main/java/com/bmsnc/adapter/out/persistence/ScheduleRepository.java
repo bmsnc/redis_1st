@@ -12,9 +12,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     @Query("select distinct s " +
             "from Schedule s " +
-            "left join fetch s.movieTheaterInfo i " +
-            "left join fetch i.movie m " +
-            "left join fetch i.theater t " +
+            "left join fetch s.movie m " +
+            "left join fetch s.theater t " +
             "where 1=1 " +
             "and t.theaterId = :theaterId " +
             "and :now between date(s.screenOpenAt) and date(s.screenCloseAt) " +

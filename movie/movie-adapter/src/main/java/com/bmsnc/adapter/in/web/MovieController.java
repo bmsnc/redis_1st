@@ -6,6 +6,7 @@ import com.bmsnc.common.Result;
 import com.bmsnc.common.dto.MovieGenre;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -17,7 +18,7 @@ public class MovieController {
     private final MovieUseCaseService movieUseCaseService;
 
     @GetMapping("/running/{theaterId}")
-    public Result getRunningMovies(@PathVariable("theaterId") Long theaterId) {
+    public Result getRunningMovies(@PathVariable Long theaterId) {
         RunningMovieCommand command = RunningMovieCommand.builder()
                 .theaterId(theaterId)
                 .build();
@@ -36,5 +37,4 @@ public class MovieController {
                 .build();
         return movieUseCaseService.searchRunningMovies(command);
     }
-
 }

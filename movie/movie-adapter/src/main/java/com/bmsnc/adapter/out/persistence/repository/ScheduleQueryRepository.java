@@ -15,9 +15,10 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.bmsnc.adapter.out.persistence.QMovie.*;
-import static com.bmsnc.adapter.out.persistence.QSchedule.*;
-import static com.bmsnc.adapter.out.persistence.QTheater.theater;
+import static com.bmsnc.adapter.out.persistence.entity.QMovie.movie;
+import static com.bmsnc.adapter.out.persistence.entity.QSchedule.schedule;
+import static com.bmsnc.adapter.out.persistence.entity.QTheater.theater;
+
 
 @Repository
 @RequiredArgsConstructor

@@ -1,14 +1,15 @@
 CREATE TABLE `member` (
-                          `member_id`	BIGINT	NOT NULL,
+                          `member_id`	BIGINT	NOT NULL AUTO_INCREMENT,
                           `member_name`	VARCHAR(255)	NULL,
                           `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                           `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                           `created_author`	BIGINT	NULL,
-                          `updated_author`	BIGINT	NULL
+                          `updated_author`	BIGINT	NULL,
+                          PRIMARY KEY (`member_id`)
 );
 
 CREATE TABLE `movie` (
-                         `movie_id`	BIGINT	NOT NULL,
+                         `movie_id`	BIGINT	NOT NULL AUTO_INCREMENT,
                          `movie_name`	VARCHAR(255)	NULL,
                          `movie_grade`	VARCHAR(255)	NULL	COMMENT 'ENUM',
                          `movie_release_at`	TIMESTAMP	NULL,
@@ -18,71 +19,55 @@ CREATE TABLE `movie` (
                          `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                          `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                          `created_author`	BIGINT	NULL,
-                         `updated_author`	BIGINT	NULL
+                         `updated_author`	BIGINT	NULL,
+                         PRIMARY KEY (`movie_id`)
 );
 
 CREATE TABLE `theater` (
-                           `theater_id`	BIGINT	NOT NULL,
+                           `theater_id`	BIGINT	NOT NULL AUTO_INCREMENT,
                            `theater_name`	VARCHAR(255)	NULL,
                            `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                            `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                            `created_author`	BIGINT	NULL,
-                           `updated_author`	BIGINT	NULL
+                           `updated_author`	BIGINT	NULL,
+                           PRIMARY KEY (`theater_id`)
 );
 
 CREATE TABLE `schedule` (
-                            `schedule_id`	BIGINT	NOT NULL,
-                            `movie_theater_info_id`	BIGINT	NOT NULL,
+                            `schedule_id`	BIGINT	NOT NULL AUTO_INCREMENT,
+                            `movie_id`	BIGINT	NOT NULL,
+                            `theater_id`	BIGINT	NOT NULL,
                             `movie_start_at`	TIMESTAMP	NULL,
                             `screen_open_at`	TIMESTAMP	NULL,
                             `screen_close_at`	TIMESTAMP	NULL,
                             `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                             `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                             `created_author`	BIGINT	NULL,
-                            `updated_author`	BIGINT	NULL
+                            `updated_author`	BIGINT	NULL,
+                            PRIMARY KEY (`schedule_id`)
 );
 
-CREATE TABLE `seatInfo` (
-                            `seatInfo_id`	BIGINT	NOT NULL,
-                            `schedule_id`	BIGINT	NOT NULL,
-                            `seat_position`	VARCHAR(255)	NULL,
-                            `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
-                            `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
-                            `created_author`	BIGINT	NULL,
-                            `updated_author`	BIGINT	NULL
+CREATE TABLE `seat` (
+                        `seat_id`	BIGINT	NOT NULL AUTO_INCREMENT,
+                        `theater_id`	BIGINT	NOT NULL,
+                        `seat_position`	VARCHAR(255)	NULL,
+                        `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
+                        `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
+                        `created_author`	BIGINT	NULL,
+                        `updated_author`	BIGINT	NULL,
+                        PRIMARY KEY (`seat_id`)
 );
 
 CREATE TABLE `reservation` (
-                               `reservation_id`	BIGINT	NOT NULL,
+                               `reservation_id`	BIGINT	NOT NULL AUTO_INCREMENT,
                                `member_id`	BIGINT	NOT NULL,
-                               `movie_theater_info_id`	BIGINT	NOT NULL,
+                               `schedule_id`	BIGINT	NOT NULL,
+                               `seat_id`	BIGINT	NOT NULL,
                                `created_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                                `updated_at`	TIMESTAMP	NOT NULL	DEFAULT NOW(),
                                `created_author`	BIGINT	NULL,
-                               `updated_author`	BIGINT	NULL
+                               `updated_author`	BIGINT	NULL,
+                               PRIMARY KEY (`reservation_id`)
 );
 
-CREATE TABLE `movie_theater_info` (
-                                      `movie_theater_info_id`	BIGINT	NOT NULL,
-                                      `movie_id`	BIGINT	NOT NULL,
-                                      `theater_id`	BIGINT	NOT NULL,
-                                      `created_at`	TIMESTAMP	NULL	DEFAULT NOW(),
-                                      `updated_at`	TIMESTAMP	NULL	DEFAULT NOW(),
-                                      `created_author`	BIGINT	NULL,
-                                      `updated_author`	BIGINT	NULL
-);
-
-ALTER TABLE `member` ADD CONSTRAINT `PK_MEMBER` PRIMARY KEY (`member_id`);
-
-ALTER TABLE `movie` ADD CONSTRAINT `PK_MOVIE` PRIMARY KEY (`movie_id`);
-
-ALTER TABLE `theater` ADD CONSTRAINT `PK_THEATER` PRIMARY KEY (`theater_id`);
-
-ALTER TABLE `schedule` ADD CONSTRAINT `PK_SCHEDULE` PRIMARY KEY (`schedule_id`);
-
-ALTER TABLE `seatInfo` ADD CONSTRAINT `PK_SEATINFO` PRIMARY KEY (`seatInfo_id`);
-
-ALTER TABLE `reservation` ADD CONSTRAINT `PK_RESERVATION` PRIMARY KEY (`reservation_id`);
-
-ALTER TABLE `movie_theater_info` ADD CONSTRAINT `PK_MOVIE_THEATER_INFO` PRIMARY KEY (`movie_theater_info_id`);
 

@@ -17,10 +17,10 @@ public class Seat extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seatInfoId;
+    private Long seatId;
 
     @ManyToOne
-    @JoinColumn(name = "schedule_id")
-    private Schedule schedule;
+    @JoinColumn(name = "theater_id")
+    private Theater theater;
     private String seatPosition;
 }

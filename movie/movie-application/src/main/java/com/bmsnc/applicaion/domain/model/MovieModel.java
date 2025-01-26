@@ -20,5 +20,4 @@ public class MovieModel {
     private MovieGenre movieGenre;
     private String theaterName;
     private LocalDateTime movieStartAt;
-
 }

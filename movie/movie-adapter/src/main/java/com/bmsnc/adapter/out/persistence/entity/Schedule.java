@@ -1,4 +1,4 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.entity;
 
 import com.bmsnc.adapter.out.BaseEntity;
 import jakarta.persistence.*;
@@ -26,10 +26,7 @@ public class Schedule extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "theater_id")
     private Theater theater;
-
     private LocalDateTime movieStartAt;
-
     private LocalDateTime screenOpenAt;
-
     private LocalDateTime screenCloseAt;
 }

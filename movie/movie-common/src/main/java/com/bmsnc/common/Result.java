@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class Result<T> {
+
     private int status;
     private T data;
 }

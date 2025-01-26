@@ -1,4 +1,4 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.repository;
 
 import com.bmsnc.adapter.out.querydsl.model.MovieQueryModel;
 import com.bmsnc.adapter.out.querydsl.model.QMovieQueryModel;
@@ -26,7 +26,6 @@ public class ScheduleQueryRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
     public List<MovieQueryModel> searchRunningMovies(RunningMovieCommand command) {
-
         return jpaQueryFactory
                 .select(new QMovieQueryModel(
                         movie.movieId,

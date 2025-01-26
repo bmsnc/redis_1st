@@ -1,6 +1,5 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.entity;
 
-import com.bmsnc.adapter.out.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,15 +11,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Seat extends BaseEntity {
+public class Reservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seatInfoId;
+    private Long reservationId;
+
+    @ManyToOne
+    @JoinColumn(name = "memberId")
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    private String seatPosition;
-
+    @ManyToOne
+    @JoinColumn(name = "seat_id")
+    private Seat seat;
 }

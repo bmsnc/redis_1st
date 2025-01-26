@@ -19,7 +19,6 @@ public class MovieUseCaseService implements MovieUseCase {
 
     @Override
     public Result getRunningMovies(RunningMovieCommand command) {
-
         return Result.builder()
                 .status(HttpStatus.OK.value())
                 .data(runningMoviesPort.getRunningMovies(command))

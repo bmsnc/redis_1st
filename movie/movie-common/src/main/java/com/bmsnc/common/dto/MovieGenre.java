@@ -1,13 +1,13 @@
 package com.bmsnc.common.dto;
 
 public enum MovieGenre {
+    ALL,
     COMEDY,
     FANTASY,
     ROMANCE,
     ACTION,
     ANIMATION,
-    HORROR,
-    ETC;
+    HORROR;
 
     public static boolean anyMatch(String genre) {
         for (MovieGenre movieGenre : MovieGenre.values()) {

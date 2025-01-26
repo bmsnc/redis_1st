@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/movie")
+@RequestMapping("/api/v1/movies")
 public class MovieController {
 
     private final MovieUseCaseService movieUseCaseService;
@@ -21,14 +21,13 @@ public class MovieController {
         RunningMovieCommand command = RunningMovieCommand.builder()
                 .theaterId(theaterId)
                 .build();
-
         return movieUseCaseService.getRunningMovies(command);
     }
 
     // QueryDsl
     @GetMapping("/searchRunningMovies")
     public Result searchRunningMovies(@Valid SearchRunningMoviesRequest request) {
-        MovieGenre movieGenre =  MovieGenre.anyMatch(request.getMovieGenre()) ? MovieGenre.valueOf(request.getMovieGenre()) : MovieGenre.ETC;
+        MovieGenre movieGenre =  MovieGenre.anyMatch(request.getMovieGenre()) ? MovieGenre.valueOf(request.getMovieGenre()) : MovieGenre.ALL;
 
         RunningMovieCommand command = RunningMovieCommand.builder()
                 .theaterId(request.getTheaterId())

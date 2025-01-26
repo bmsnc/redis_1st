@@ -59,7 +59,7 @@ public class ScheduleQueryRepository{
 
     BooleanExpression eqMovieGenre(MovieGenre movieGenre) {
         return !StringUtils.hasText(movieGenre.toString()) ? null
-                : (MovieGenre.ETC.equals(movieGenre) ? null
+                : (MovieGenre.ALL.equals(movieGenre) ? null
                 : movie.movieGenre.eq(movieGenre));
 
     }

@@ -40,9 +40,9 @@ public class ScheduleQueryRepository{
                         schedule.movieStartAt
                 ))
                 .from(schedule)
-                .leftJoin(movie)
+                .innerJoin(movie)
                     .on(schedule.movie.movieId.eq(movie.movieId))
-                .leftJoin(theater)
+                .innerJoin(theater)
                     .on(schedule.theater.theaterId.eq(theater.theaterId))
                 .where(
                         theater.theaterId.eq(command.theaterId()),

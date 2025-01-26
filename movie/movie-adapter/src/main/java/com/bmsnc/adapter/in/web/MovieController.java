@@ -28,11 +28,11 @@ public class MovieController {
     // QueryDsl
     @GetMapping("/searchRunningMovies")
     public Result searchRunningMovies(@Valid SearchRunningMoviesRequest request) {
-        MovieGenre movieGenre =  MovieGenre.anyMatch(request.getMovieGenre()) ? MovieGenre.valueOf(request.getMovieGenre()) : MovieGenre.ALL;
+        MovieGenre movieGenre =  MovieGenre.anyMatch(request.movieGenre()) ? MovieGenre.valueOf(request.movieGenre()) : MovieGenre.ALL;
 
         RunningMovieCommand command = RunningMovieCommand.builder()
-                .theaterId(request.getTheaterId())
-                .movieName(request.getMovieName())
+                .theaterId(request.theaterId())
+                .movieName(request.movieName())
                 .movieGenre(movieGenre)
                 .build();
         return movieUseCaseService.searchRunningMovies(command);

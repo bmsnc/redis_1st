@@ -5,13 +5,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Getter;
 
-@Getter
 @Builder
-public class SearchRunningMoviesRequest {
-
+public record SearchRunningMoviesRequest (
     @NotNull
-    private Long theaterId;
+    Long theaterId,
+
     @Size(max = 255)
-    private String movieName;
-    private String movieGenre;
-}
+    String movieName,
+    String movieGenre
+) {}

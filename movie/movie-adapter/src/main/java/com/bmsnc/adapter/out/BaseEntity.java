@@ -13,9 +13,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-
 public class BaseEntity {
-
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -23,7 +21,6 @@ public class BaseEntity {
     @LastModifiedDate
     @Column
     private LocalDateTime updatedAt = LocalDateTime.now();
-
     private Long createdAuthor;
     private Long updatedAuthor;
 }

@@ -45,10 +45,10 @@ public class ScheduleQueryRepository{
                 .leftJoin(theater)
                     .on(schedule.theater.theaterId.eq(theater.theaterId))
                 .where(
-                        theater.theaterId.eq(command.getTheaterId()),
+                        theater.theaterId.eq(command.theaterId()),
                         isScreening(),
-                        likeMovieName(command.getMovieName()),
-                        eqMovieGenre(command.getMovieGenre())
+                        likeMovieName(command.movieName()),
+                        eqMovieGenre(command.movieGenre())
                 )
                 .orderBy(movie.movieReleaseAt.asc(), schedule.movieStartAt.asc())
                 .fetch();

@@ -7,17 +7,15 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Getter
 @Builder
-public class MovieModel {
-
-    private Long movieId;
-    private String movieName;
-    private MovieGrade movieGrade;
-    private LocalDateTime movieReleaseAt;
-    private String movieImageUrl;
-    private Long runningTimeMinutes;
-    private MovieGenre movieGenre;
-    private String theaterName;
-    private LocalDateTime movieStartAt;
-}
+public record MovieModel (
+    Long movieId,
+    String movieName,
+    MovieGrade movieGrade,
+    LocalDateTime movieReleaseAt,
+    String movieImageUrl,
+    Long runningTimeMinutes,
+    MovieGenre movieGenre,
+    String theaterName,
+    LocalDateTime movieStartAt
+) {}

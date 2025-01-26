@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 public class MovieQueryModel {
-
     private Long movieId;
     private String movieName;
     private MovieGrade movieGrade;

@@ -2,11 +2,13 @@ package com.bmsnc.applicaion.port.in;
 
 
 
-import com.bmsnc.common.Result;
+import com.bmsnc.applicaion.domain.model.MovieModel;
+
+import java.util.List;
 
 public interface MovieUseCase {
 
-    Result getRunningMovies(RunningMovieCommand command);
-    Result searchRunningMovies(RunningMovieCommand command);
+    List<MovieModel> getRunningMovies(RunningMovieCommand command);
+    List<MovieModel> searchRunningMovies(RunningMovieCommand command);
 
 }

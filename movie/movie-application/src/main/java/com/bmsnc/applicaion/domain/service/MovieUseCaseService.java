@@ -1,14 +1,15 @@
 package com.bmsnc.applicaion.domain.service;
 
 
+import com.bmsnc.applicaion.domain.model.MovieModel;
 import com.bmsnc.applicaion.port.in.MovieUseCase;
 import com.bmsnc.applicaion.port.in.RunningMovieCommand;
 import com.bmsnc.applicaion.port.out.RunningMoviesPort;
-import com.bmsnc.common.Result;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -18,18 +19,12 @@ public class MovieUseCaseService implements MovieUseCase {
     private final RunningMoviesPort runningMoviesPort;
 
     @Override
-    public Result getRunningMovies(RunningMovieCommand command) {
-
-        return Result.builder()
-                .status(HttpStatus.OK.value())
-                .data(runningMoviesPort.getRunningMovies(command))
-                .build();
+    public List<MovieModel> getRunningMovies(RunningMovieCommand command) {
+        return runningMoviesPort.getRunningMovies(command);
     }
+
     @Override
-    public Result searchRunningMovies(@Valid RunningMovieCommand command) {
-        return Result.builder()
-                .status(HttpStatus.OK.value())
-                .data(runningMoviesPort.searchRunningMovies(command))
-                .build();
+    public List<MovieModel> searchRunningMovies(@Valid RunningMovieCommand command) {
+        return runningMoviesPort.searchRunningMovies(command);
     }
 }

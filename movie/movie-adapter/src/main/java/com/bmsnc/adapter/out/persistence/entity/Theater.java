@@ -1,4 +1,4 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.entity;
 
 import com.bmsnc.adapter.out.BaseEntity;
 import jakarta.persistence.Entity;
@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Member extends BaseEntity {
+public class Theater extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
-    private String memberName;
+    private Long theaterId;
+    private String theaterName;
 }

@@ -1,4 +1,4 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

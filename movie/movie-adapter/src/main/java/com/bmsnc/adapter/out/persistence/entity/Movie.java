@@ -1,4 +1,4 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.entity;
 
 import com.bmsnc.adapter.out.BaseEntity;
 import com.bmsnc.applicaion.domain.model.MovieModel;
@@ -21,11 +21,13 @@ public class Movie extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movieId;
     private String movieName;
+
     @Enumerated(EnumType.STRING)
     private MovieGrade movieGrade;
     private LocalDateTime movieReleaseAt;
     private String movieImageUrl;
     private Long runningTimeMinutes;
+
     @Enumerated(EnumType.STRING)
     private MovieGenre movieGenre;
 

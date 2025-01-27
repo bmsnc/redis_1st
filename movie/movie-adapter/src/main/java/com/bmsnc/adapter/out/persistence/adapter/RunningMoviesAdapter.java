@@ -1,5 +1,9 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.adapter;
 
+import com.bmsnc.adapter.out.persistence.entity.Movie;
+import com.bmsnc.adapter.out.persistence.entity.Schedule;
+import com.bmsnc.adapter.out.persistence.repository.ScheduleQueryRepository;
+import com.bmsnc.adapter.out.persistence.repository.ScheduleRepository;
 import com.bmsnc.adapter.out.querydsl.model.MovieQueryModel;
 import com.bmsnc.applicaion.domain.model.MovieModel;
 import com.bmsnc.applicaion.port.in.RunningMovieCommand;
@@ -23,8 +27,7 @@ public class RunningMoviesAdapter implements RunningMoviesPort {
 
     @Override
     public List<MovieModel> getRunningMovies(RunningMovieCommand command) {
-
-        return scheduleRepository.getRunningMovies(command.getTheaterId(), LocalDate.now())
+        return scheduleRepository.getRunningMovies(command.theaterId(), LocalDate.now())
                 .stream()
                 .map(Schedule::getMovie)
                 .filter(Objects::nonNull)
@@ -34,7 +37,6 @@ public class RunningMoviesAdapter implements RunningMoviesPort {
 
     @Override
     public List<MovieModel> searchRunningMovies(RunningMovieCommand command) {
-
         return scheduleQueryRepository.searchRunningMovies(command)
                 .stream()
                 .map(MovieQueryModel::toModel)

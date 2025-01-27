@@ -1,15 +1,20 @@
 package com.bmsnc.common;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Builder
-@AllArgsConstructor
-@Getter
-@NoArgsConstructor
-public class Result<T> {
-    private int status;
-    private T data;
+public record Result<T> (
+    String message,
+    int status,
+    T data
+) {
+    public static <T> Result<T> of(String message, int status, T data) {
+        if ((data == null || (data instanceof List<?> list && list.isEmpty())) && (message == null || message.isEmpty())) {
+            return new Result<>("조회된 결과가 없습니다.", 200, null);
+        }
+        return new Result<>(message, status, data);
+    }
 }
+
+

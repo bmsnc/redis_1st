@@ -1,4 +1,4 @@
-package com.bmsnc.adapter.out.persistence;
+package com.bmsnc.adapter.out.persistence.repository;
 
 import com.bmsnc.adapter.out.querydsl.model.MovieQueryModel;
 import com.bmsnc.adapter.out.querydsl.model.QMovieQueryModel;
@@ -15,9 +15,10 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDate;
 import java.util.List;
 
-import static com.bmsnc.adapter.out.persistence.QMovie.*;
-import static com.bmsnc.adapter.out.persistence.QSchedule.*;
-import static com.bmsnc.adapter.out.persistence.QTheater.theater;
+import static com.bmsnc.adapter.out.persistence.entity.QMovie.movie;
+import static com.bmsnc.adapter.out.persistence.entity.QSchedule.schedule;
+import static com.bmsnc.adapter.out.persistence.entity.QTheater.theater;
+
 
 @Repository
 @RequiredArgsConstructor
@@ -26,7 +27,6 @@ public class ScheduleQueryRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
     public List<MovieQueryModel> searchRunningMovies(RunningMovieCommand command) {
-
         return jpaQueryFactory
                 .select(new QMovieQueryModel(
                         movie.movieId,
@@ -40,15 +40,15 @@ public class ScheduleQueryRepository{
                         schedule.movieStartAt
                 ))
                 .from(schedule)
-                .leftJoin(movie)
+                .innerJoin(movie)
                     .on(schedule.movie.movieId.eq(movie.movieId))
-                .leftJoin(theater)
+                .innerJoin(theater)
                     .on(schedule.theater.theaterId.eq(theater.theaterId))
                 .where(
-                        theater.theaterId.eq(command.getTheaterId()),
+                        theater.theaterId.eq(command.theaterId()),
                         isScreening(),
-                        likeMovieName(command.getMovieName()),
-                        eqMovieGenre(command.getMovieGenre())
+                        likeMovieName(command.movieName()),
+                        eqMovieGenre(command.movieGenre())
                 )
                 .orderBy(movie.movieReleaseAt.asc(), schedule.movieStartAt.asc())
                 .fetch();
@@ -60,7 +60,7 @@ public class ScheduleQueryRepository{
 
     BooleanExpression eqMovieGenre(MovieGenre movieGenre) {
         return !StringUtils.hasText(movieGenre.toString()) ? null
-                : (MovieGenre.ETC.equals(movieGenre) ? null
+                : (MovieGenre.ALL.equals(movieGenre) ? null
                 : movie.movieGenre.eq(movieGenre));
 
     }

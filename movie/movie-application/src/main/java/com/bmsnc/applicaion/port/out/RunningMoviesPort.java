@@ -8,6 +8,5 @@ import java.util.List;
 public interface RunningMoviesPort {
 
     List<MovieModel> getRunningMovies(RunningMovieCommand command);
-
     List<MovieModel> searchRunningMovies(RunningMovieCommand command);
 }

@@ -6,13 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Getter;
 
-@Getter
 @Builder
-public class RunningMovieCommand {
-
+public record RunningMovieCommand (
     @NotNull
-    private Long theaterId;
+    Long theaterId,
     @Size(max = 255)
-    private String movieName;
-    private MovieGenre movieGenre;
-}
+    String movieName,
+    MovieGenre movieGenre
+) {}

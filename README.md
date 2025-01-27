@@ -5,7 +5,7 @@
 * movie-common : 공통으로 사용하는 코드를 관리하는 모듈
 
 ### 2. ERD
-<img width="1100" alt="Image" src="https://github.com/user-attachments/assets/008c030e-535f-4103-837e-7f0cafb0779e" />
+<img width="1129" alt="Image" src="https://github.com/user-attachments/assets/61a63baa-ac51-4739-afcd-6f4bf281a89a" />
 
 ### 3. 실행
 * 도커 실행 명령어
